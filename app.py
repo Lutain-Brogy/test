@@ -19,4 +19,4 @@ elif choice == "Allow Write":
 
 elif choice == "Authentication Rule":
     st.write("Generate auth rule")
-    st.write("User input:", user_input)
+    st.write("User input:")
