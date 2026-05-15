@@ -21,8 +21,20 @@ if choice == "Allow read":
         ]
     )
 
-    if edit_choice == "Allow public read":
-        st.write("Thanks")
+if edit_choice == "Allow public read":
+    st.write('Code rule below") 
+    st.write("""
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /your_collection/{documentId} {
+      allow read: if true;
+    }
+
+  }
+}
+""")
 
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
