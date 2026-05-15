@@ -11,6 +11,7 @@ choice = st.selectbox(
 )
 
 if choice == "Allow read":
+
     edit_choice = st.selectbox(
         "On what terms?",
         [
@@ -21,9 +22,10 @@ if choice == "Allow read":
             "Selected documents read"
         ]
     )
-if edit_choice == "Allow public read":
-    st.write("Copy rule below")
-    st.code("""
+
+    if edit_choice == "Allow public read":
+        st.write("Copy rule below")
+        st.code("""
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
@@ -36,22 +38,22 @@ service cloud.firestore {
 }
 """, language="javascript")
 
-elif edit_choice == "Only owner reads":
-    st.write("Copy rule below")
-    st.code("""
+    elif edit_choice == "Only owner reads":
+        st.write("Copy rule below")
+        st.code("""
 match /your_collection/{userId} {
   allow read: if request.auth != null
               && request.auth.uid == userId;
 }
 """, language="javascript")
 
-elif edit_choice == "Specific role reads":
-    st.write("Copy rule below")
+    elif edit_choice == "Specific role reads":
+        st.write("Copy rule below")
 
-    user_id = st.text_input("Please paste the user ID allowed to read")
+        user_id = st.text_input("Please paste the user ID allowed to read")
 
-    if user_id:
-        st.code(f"""
+        if user_id:
+            st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
@@ -65,13 +67,13 @@ service cloud.firestore {{
 }}
 """, language="javascript")
 
-elif edit_choice == "Conditional data based read":
-    st.write("Copy rule below")
+    elif edit_choice == "Conditional data based read":
+        st.write("Copy rule below")
 
-    condition = st.text_input("Please paste the condition for reading (e.g. visibility == 'public')")
+        condition = st.text_input("Please paste the condition for reading (e.g. visibility == 'public')")
 
-    if condition:
-        st.code(f"""
+        if condition:
+            st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
@@ -84,15 +86,15 @@ service cloud.firestore {{
 }}
 """, language="javascript")
 
-elif edit_choice == "Selected documents read":
-    st.write("Copy rule below")
+    elif edit_choice == "Selected documents read":
+        st.write("Copy rule below")
 
-    doc_list = st.text_input("Which documents would you like to choose to be read? (comma separated)")
+        doc_list = st.text_input("Which documents would you like to choose to be read? (comma separated)")
 
-    if doc_list:
-        docs = [d.strip() for d in doc_list.split(",")]
+        if doc_list:
+            docs = [d.strip() for d in doc_list.split(",")]
 
-        st.code(f"""
+            st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
@@ -120,6 +122,7 @@ service cloud.firestore {
   }
 }
 """, language="javascript")
+
 # elif choice == "Allow Edit":
    # st.write("Generate edit rule")
 
