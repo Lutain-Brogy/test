@@ -8,13 +8,6 @@ choice = st.selectbox(
 )
 
 
-import streamlit as st
-
-choice = st.selectbox(
-    "What rule would you like?",
-    ["Allow read", "Allow Edit", "Authentication Rule"]
-)
-
 if choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
