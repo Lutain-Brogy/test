@@ -4,7 +4,10 @@ st.title("Firestore Rule Writer")
 
 choice = st.selectbox(
     "What rule would you like to write?",
-    ["Allow read", "Deny read" , "Allow Edit", "Authentication Rule"]
+    ["Allow read", "Deny read" ,
+     #"Allow Edit", 
+     #"Authentication Rule"
+     }
 )
 
 
