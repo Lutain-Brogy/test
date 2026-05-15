@@ -48,9 +48,25 @@ elif edit_choice == "Specific role reads":
 
 elif edit_choice == "Conditional data based read":
     st.write("Copy rule below")
-
-elif edit_choice == "Selected documents read":
+elif edit_choice == "Conditional data based read":
     st.write("Copy rule below")
+
+    doc_name = st.text_input("Please paste the name of the selected document(s)")
+
+    if doc_name:
+        st.code(f"""
+rules_version = '2';
+service cloud.firestore {{
+  match /databases/{{database}}/documents {
+
+    match /your_collection/{{documentId}} {{
+      allow read: if documentId == "{doc_name}";
+    }}
+
+  }}
+}}
+""", language="javascript")
+
 
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
