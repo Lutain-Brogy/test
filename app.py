@@ -22,7 +22,7 @@ if choice == "Allow read":
         ]
     )
 if choice == "Allow public read":
-    st.write('Thanks")
+    st.write("Thanks")
 
     
 elif choice == "Allow Edit":
