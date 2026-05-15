@@ -23,18 +23,6 @@ if choice == "Allow read":
         ]
     )
 
-if edit_choice == "Allow public read":
-    st.write("Copy rule below")
-    st.code("""
-rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /your_collection/{documentId} {
-      allow read: if true;
-    }
-  }
-}
-""", language="javascript")
 
 
 elif edit_choice == "Only owner reads":
