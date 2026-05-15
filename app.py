@@ -13,7 +13,6 @@ if choice == "Allow read":
         "On what terms?",
         [
             "Allow public read",
-            "After authentication read",
             "Only owner reads",
             "Specific role reads",
             "Conditional data based read",
@@ -34,13 +33,6 @@ service cloud.firestore {
 }
 """, language="javascript")
 
-elif edit_choice == "After authentication read":
-    st.write("Copy rule below")
-    st.code("""
-match /your_collection/{documentId} {
-  allow read: if request.auth != null;
-}
-""", language="javascript")
 
 elif edit_choice == "Only owner reads":
     st.write("Copy rule below")
