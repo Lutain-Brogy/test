@@ -19,27 +19,26 @@ if choice == "Allow read":
             "Only owner reads",
             "Specific role reads",
             "Conditional data based read",
-            "Selected documents read"          
+            "Selected documents read"
         ]
     )
 
-
-elif edit_choice == "Only owner reads":
-    st.write("Copy rule below")
-    st.code("""
+    if edit_choice == "Only owner reads":
+        st.write("Copy rule below")
+        st.code("""
 match /your_collection/{userId} {
   allow read: if request.auth != null
               && request.auth.uid == userId;
 }
 """, language="javascript")
 
-elif edit_choice == "Specific role reads":
-    st.write("Copy rule below")
+    elif edit_choice == "Specific role reads":
+        st.write("Copy rule below")
 
-    user_id = st.text_input("Please paste the user ID allowed to read")
+        user_id = st.text_input("Please paste the user ID allowed to read")
 
-    if user_id:
-        st.code(f"""
+        if user_id:
+            st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
