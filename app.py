@@ -4,7 +4,7 @@ st.title("Firestore Rule Writer")
 
 choice = st.selectbox(
     "What rule would you like to write?",
-    ["Allow read", "Allow Edit", "Authentication Rule"]
+    ["Allow read", "Deny read" , "Allow Edit", "Authentication Rule"]
 )
 
 
@@ -100,10 +100,24 @@ service cloud.firestore {{
   }}
 }}
 """, language="javascript")
-    
 
-elif choice == "Allow Edit":
-    st.write("Generate edit rule")
+elif choice == "Deny read":
+    st.write("Copy rule below, but remember nobody (including you) will not be able to read it")
 
-elif choice == "Authentication Rule":
-    st.write("Generate auth rule")
+    st.code("""
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /your_collection/{documentId} {
+      allow read: if false;
+    }
+
+  }
+}
+""", language="javascript")
+# elif choice == "Allow Edit":
+   # st.write("Generate edit rule")
+
+# elif choice == "Authentication Rule":
+#    st.write("Generate auth rule")
