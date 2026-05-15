@@ -10,6 +10,13 @@ choice = st.selectbox(
 user_input = st.text_input("Describe your rule (optional)")
 
 
+import streamlit as st
+
+choice = st.selectbox(
+    "What rule would you like?",
+    ["Allow read", "Allow Edit", "Authentication Rule"]
+)
+
 if choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
@@ -21,14 +28,12 @@ if choice == "Allow read":
             "Conditional data based"
         ]
     )
-if choice == "Allow public read":
-    st.write("Thanks")
 
-    
+    if edit_choice == "Allow public read":
+        st.write("Thanks")
+
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
-    st.write("User input:", user_input)
 
 elif choice == "Authentication Rule":
     st.write("Generate auth rule")
-    st.write("User input:")
