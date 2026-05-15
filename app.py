@@ -4,13 +4,13 @@ st.title("Firestore Rule Writer")
 
 choice = st.selectbox(
     "What rule would you like to write?",
-    ["Allow Edit", "Allow Write", "Authentication Rule"]
+    ["Allow read", "Allow Edit", "Authentication Rule"]
 )
 
 user_input = st.text_input("Describe your rule (optional)")
 
 
-if choice == "Allow Edit":
+if choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
         [
@@ -22,8 +22,8 @@ if choice == "Allow Edit":
         ]
     )
     
-elif choice == "Allow Write":
-    st.write("Generate write rule")
+elif choice == "Allow Edit":
+    st.write("Generate edit rule")
     st.write("User input:", user_input)
 
 elif choice == "Authentication Rule":
