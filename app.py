@@ -9,10 +9,19 @@ choice = st.selectbox(
 
 user_input = st.text_input("Describe your rule (optional)")
 
-if choice == "Allow Edit":
-    st.write("Generate update rule")
-    st.write("User input:", user_input)
 
+if choice == "Allow Edit":
+    edit_choice = st.selectbox(
+        "On what terms?",
+        [
+            "Allow public to read",
+            "After authentication",
+            "Only owner reads",
+            "Specific role reads",
+            "Conditional data based"
+        ]
+    )
+    
 elif choice == "Allow Write":
     st.write("Generate write rule")
     st.write("User input:", user_input)
