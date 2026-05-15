@@ -66,16 +66,16 @@ service cloud.firestore {{
 elif edit_choice == "Conditional data based read":
     st.write("Copy rule below")
 
-    doc_name = st.text_input("Please paste the name of the selected document(s)")
+    condition = st.text_input("Please paste the condition for reading (e.g. visibility == public)")
 
-    if doc_name:
+    if condition:
         st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
 
     match /your_collection/{{documentId}} {{
-      allow read: if documentId == "{doc_name}";
+      allow read: if resource.data.{condition};
     }}
 
   }}
