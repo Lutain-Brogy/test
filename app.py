@@ -9,9 +9,22 @@ choice = st.selectbox(
      #"Authentication Rule"
     ]
 )
+if edit_choice == "Allow public read":
+    st.write("Copy rule below")
+    st.code("""
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
 
+    match /your_collection/{documentId} {
+      allow read: if true;
+    }
 
-if choice == "Allow read":
+  }
+}
+""", language="javascript")
+
+elif choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
         [
