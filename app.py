@@ -24,7 +24,6 @@ if choice == "Allow read":
     )
 
 
-
 elif edit_choice == "Only owner reads":
     st.write("Copy rule below")
     st.code("""
@@ -33,7 +32,7 @@ match /your_collection/{userId} {
               && request.auth.uid == userId;
 }
 """, language="javascript")
-    
+
 elif edit_choice == "Specific role reads":
     st.write("Copy rule below")
 
@@ -57,7 +56,7 @@ service cloud.firestore {{
 elif edit_choice == "Conditional data based read":
     st.write("Copy rule below")
 
-    condition = st.text_input("Please paste the condition for reading (e.g. visibility == public)")
+    condition = st.text_input("Please paste the condition for reading (e.g. visibility == 'public')")
 
     if condition:
         st.code(f"""
@@ -73,27 +72,30 @@ service cloud.firestore {{
 }}
 """, language="javascript")
 
-if edit_choice == "Selected documents read":
+
+elif edit_choice == "Selected documents read":
     st.write("Copy rule below")
 
     doc_list = st.text_input("Which documents would you like to choose to be read? (comma separated)")
 
     if doc_list:
+        docs = [d.strip() for d in doc_list.split(",")]
+
         st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
   match /databases/{{database}}/documents {{
 
     match /your_collection/{{documentId}} {{
-      allow read: if documentId in {doc_list.split(",")};
+      allow read: if documentId in {docs};
     }}
 
   }}
 }}
 """, language="javascript")
-
+        
 elif choice == "Deny read":
-    st.write("Copy rule below, but remember nobody (including you) will not be able to read it")
+    st.write("Copy rule below, but remember nobody (including you) will be able to read it")
 
     st.code("""
 rules_version = '2';
