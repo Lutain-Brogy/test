@@ -9,6 +9,18 @@ choice = st.selectbox(
      #"Authentication Rule"
     ]
 )
+
+elif choice == "Allow read":
+    edit_choice = st.selectbox(
+        "On what terms?",
+        [
+            "Allow public read",
+            "Only owner reads",
+            "Specific role reads",
+            "Conditional data based read",
+            "Selected documents read"
+        ]
+    )
 if edit_choice == "Allow public read":
     st.write("Copy rule below")
     st.code("""
@@ -24,19 +36,7 @@ service cloud.firestore {
 }
 """, language="javascript")
 
-elif choice == "Allow read":
-    edit_choice = st.selectbox(
-        "On what terms?",
-        [
-            "Allow public read",
-            "Only owner reads",
-            "Specific role reads",
-            "Conditional data based read",
-            "Selected documents read"
-        ]
-    )
-
-   if edit_choice == "Only owner reads":
+elif edit_choice == "Only owner reads":
     st.write("Copy rule below")
     st.code("""
 match /your_collection/{userId} {
