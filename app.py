@@ -16,7 +16,8 @@ if choice == "Allow read":
             "After authentication",
             "Only owner reads",
             "Specific role reads",
-            "Conditional data based"
+            "Conditional data based",
+            "Selected documents"          
         ]
     )
 
