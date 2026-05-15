@@ -42,7 +42,7 @@ match /your_collection/{userId} {
               && request.auth.uid == userId;
 }
 """, language="javascript")
-
+    
 elif edit_choice == "Specific role reads":
     st.write("Copy rule below")
 
@@ -55,7 +55,7 @@ elif edit_choice == "Conditional data based read":
         st.code(f"""
 rules_version = '2';
 service cloud.firestore {{
-  match /databases/{{database}}/documents {
+  match /databases/{{database}}/documents {{
 
     match /your_collection/{{documentId}} {{
       allow read: if documentId == "{doc_name}";
