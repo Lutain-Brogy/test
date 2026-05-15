@@ -7,7 +7,7 @@ choice = st.selectbox(
     ["Allow read", "Deny read" ,
      #"Allow Edit", 
      #"Authentication Rule"
-     }
+    ]
 )
 
 
