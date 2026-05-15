@@ -7,8 +7,6 @@ choice = st.selectbox(
     ["Allow read", "Allow Edit", "Authentication Rule"]
 )
 
-user_input = st.text_input("Describe your rule (optional)")
-
 
 import streamlit as st
 
