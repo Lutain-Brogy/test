@@ -22,7 +22,7 @@ if choice == "Allow read":
     )
 
 if edit_choice == "Allow public read":
-    st.write('Code rule below") 
+    st.write("Copy rule below") 
     st.write("""
 rules_version = '2';
 service cloud.firestore {
