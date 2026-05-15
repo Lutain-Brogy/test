@@ -13,11 +13,11 @@ if choice == "Allow read":
         "On what terms?",
         [
             "Allow public read",
-            "After authentication",
+            "After authentication read",
             "Only owner reads",
             "Specific role reads",
-            "Conditional data based",
-            "Selected documents"          
+            "Conditional data based read",
+            "Selected documents read"          
         ]
     )
 
@@ -35,6 +35,29 @@ service cloud.firestore {
   }
 }
 """)
+    
+elif edit_choice == "After authentication read":
+    st.write("Copy rule below")
+    st.write(
+
+elif edit_choice == "Only owner reads":
+    st.write("""
+match /your_collection/{userId} {
+  allow read: if request.auth != null
+              && request.auth.uid == userId;
+}
+""")
+
+
+elif edit_choice == "Specific role reads":
+    st.write("Copy rule below")
+
+elif edit_choice == "Conditional data based read":
+    st.write("Copy rule below")
+
+elif edit_choice == "Selected documents read":
+    st.write("Copy rule below")
+
 
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
