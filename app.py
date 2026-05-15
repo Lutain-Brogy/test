@@ -1,21 +1,22 @@
 import streamlit as st
-import firebase_admin
-from firebase_admin import credentials, firestore
-import json
 
-# --- Firebase init from Streamlit secrets ---
-if not firebase_admin._apps:
-    firebase_config = json.loads(st.secrets["firebase"])
-    cred = credentials.Certificate(firebase_config)
-    firebase_admin.initialize_app(cred)
+st.title("Firestore Rule Writer")
 
-db = firestore.client()
+choice = st.selectbox(
+    "What rule would you like to write?",
+    ["Allow Edit", "Allow Write", "Authentication Rule"]
+)
 
-# --- UI ---
-st.title("My Firestore App")
+user_input = st.text_input("Describe your rule (optional)")
 
-if st.button("Get Data"):
-    docs = db.collection("users").stream()
-    for d in docs:
-        st.write(d.to_dict())
-        
+if choice == "Allow Edit":
+    st.write("Generate update rule")
+    st.write("User input:", user_input)
+
+elif choice == "Allow Write":
+    st.write("Generate write rule")
+    st.write("User input:", user_input)
+
+elif choice == "Authentication Rule":
+    st.write("Generate auth rule")
+    st.write("User input:", user_input)
