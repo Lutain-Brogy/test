@@ -82,6 +82,25 @@ service cloud.firestore {{
 }}
 """, language="javascript")
 
+if edit_choice == "Selected documents read":
+    st.write("Copy rule below")
+
+    doc_list = st.text_input("Which documents would you like to choose to be read? (comma separated)")
+
+    if doc_list:
+        st.code(f"""
+rules_version = '2';
+service cloud.firestore {{
+  match /databases/{{database}}/documents {{
+
+    match /your_collection/{{documentId}} {{
+      allow read: if documentId in {doc_list.split(",")};
+    }}
+
+  }}
+}}
+""", language="javascript")
+    
 
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
