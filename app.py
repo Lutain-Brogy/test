@@ -10,7 +10,7 @@ choice = st.selectbox(
     ]
 )
 
-elif choice == "Allow read":
+if choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
         [
