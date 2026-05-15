@@ -14,13 +14,16 @@ if choice == "Allow read":
     edit_choice = st.selectbox(
         "On what terms?",
         [
-            "Allow public to read",
+            "Allow public read",
             "After authentication",
             "Only owner reads",
             "Specific role reads",
             "Conditional data based"
         ]
     )
+if choice == "Allow public read":
+    st.write('Thanks")
+
     
 elif choice == "Allow Edit":
     st.write("Generate edit rule")
